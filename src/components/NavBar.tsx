@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { RootState } from "../utils/appStore";
 import { useSelector } from "react-redux";
 
@@ -6,9 +7,9 @@ const NavBar = () => {
     
     return (
         <div className="navbar bg-base-300 shadow-sm">
-            <div className="flex-1">
+            <Link to="/" className="flex-1">
                 <a className="btn btn-ghost text-xl">👨‍💻devTinder</a>
-            </div>
+            </Link>
             {user && (    <div className="flex gap-2 mx-6">
                 <div className="dropdown dropdown-end ">
                     Welcome, {user.firstName}!
@@ -22,10 +23,10 @@ const NavBar = () => {
                     </div>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52" >
                         <li>
-                            <a className="justify-between">
+                            <Link to="/profile" className="justify-between">
                             Profile
                             <span className="badge">New</span>
-                            </a>
+                            </Link>
                         </li>
                         <li><a>Settings</a></li>
                         <li><a>Logout</a></li>
