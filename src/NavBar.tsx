@@ -1,10 +1,15 @@
+import type { RootState } from "./utils/appStore";
+import { useSelector } from "react-redux";
+
 const NavBar = () => {
+    const user = useSelector((state: RootState) => state.user);
+    
     return (
         <div className="navbar bg-base-300 shadow-sm">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">👨‍💻devTinder</a>
             </div>
-            <div className="flex gap-2 mx-6">
+            {user && (    <div className="flex gap-2 mx-6">
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar" >
                         <div className="w-10 rounded-full">
@@ -25,7 +30,7 @@ const NavBar = () => {
                         <li><a>Logout</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>)}
         </div>
 
     );
