@@ -9,6 +9,7 @@ import type { AppDispatch } from "../utils/appStore";
 const Login = () => {
     const [ email, setEmail ] = useState<string>("virat@gmail.com");
     const [ password, setPassword ] = useState<string>("Virat@123");
+    const [ error, setError ] = useState<string>("");
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Login = () => {
             dispatch(addUser(res.data));
             navigate("/");
         } catch (err) {
-            console.error("ERROR: ", err);
+            setError("Invalid email or password. Please try again.");
         };
     };
 
@@ -50,6 +51,7 @@ const Login = () => {
                     />
                 </label>
                 <div className="card-actions justify-center">
+                    {error && <p className="text-red-500">{error}</p>}
                     <button 
                         className="btn btn-primary p-4 px-8 m-2 bg-primary"
                         onClick={handleLogin}>
