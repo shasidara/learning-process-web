@@ -9,3 +9,8 @@ export interface User {
     about?: string;
     skills?: string[]; 
 }
+
+export interface Request {
+    _id: string;
+    fromUserId: User;
+}
