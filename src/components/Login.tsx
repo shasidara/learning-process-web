@@ -7,8 +7,8 @@ import BASE_URL from "../utils/constants";
 import type { AppDispatch } from "../utils/appStore";
 
 const Login = () => {
-    const [ email, setEmail ] = useState<string>("virat@gmail.com");
-    const [ password, setPassword ] = useState<string>("Virat@123");
+    const [ email, setEmail ] = useState<string>("");
+    const [ password, setPassword ] = useState<string>("");
     const [ error, setError ] = useState<string>("");
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
