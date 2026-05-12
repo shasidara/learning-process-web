@@ -1,16 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
-interface User {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    age?: number;
-    gender?: string;
-    photoURL?: string;
-    about?: string;
-}
+import type { User } from "./types";
 
 const userSlice = createSlice({
     name: "user",
