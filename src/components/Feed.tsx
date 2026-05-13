@@ -26,6 +26,10 @@ const Feed = () => {
         getFeed();
     }, []);
 
+    if(feed === null) return null;
+
+    if(feed.length <= 0) return <h1 className="text-2xl font-bold mb-6 text-center">No new users found!</h1>
+
     return (
         <div>
             {feed && <UserCard user={feed[0]} />}

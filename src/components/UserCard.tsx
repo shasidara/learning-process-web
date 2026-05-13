@@ -1,10 +1,28 @@
 import type { User } from "../utils/types";
+import type { AppDispatch } from "../utils/appStore";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import BASE_URL from "../utils/constants";
+import { removeUserFromFeed } from "../utils/feedSlice";
 
 interface UserCardProps {
     user: User;
 }
 
 const UserCard = ({ user }: UserCardProps) => {
+    const dispatch = useDispatch<AppDispatch>();
+
+    const handleSendRequest = async (status: "ignored" | "interested", _id:string) => {
+        try {
+            await axios.post(BASE_URL + "/request/send/" + status + "/" + _id, {}, {
+                withCredentials: true
+            });
+            dispatch(removeUserFromFeed(_id));
+        }catch(err) {
+            console.error("ERROR: " , err);
+        };
+    };
+
     return (
         <div className="relative w-72 mx-auto rounded-3xl overflow-hidden shadow-2xl bg-base-300 my-6 mb-40">
             <img
@@ -37,10 +55,12 @@ const UserCard = ({ user }: UserCardProps) => {
                 )}
 
                 <div className="flex justify-center gap-4 mt-5 text-base-300">
-                    <button className="btn bg-primary p-4">
+                    <button className="btn bg-primary p-4"
+                        onClick={() => handleSendRequest("ignored", user._id)}>
                         ✕ ignore
                     </button>
-                    <button className="btn bg-secondary p-4">
+                    <button className="btn bg-secondary p-4"
+                        onClick={() => handleSendRequest("interested", user._id)}>
                         ♥ interest
                     </button>
                 </div>

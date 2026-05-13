@@ -31,7 +31,6 @@ const Requests = () => {
         }
     };
 
-
     useEffect(() => {
         fetchRequests();
     }, []);
